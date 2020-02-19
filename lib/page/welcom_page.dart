@@ -9,7 +9,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed("home_page");
+      Navigator.of(context).pushReplacementNamed("login_page");
     });
 
     return Scaffold(
