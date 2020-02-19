@@ -5,6 +5,7 @@ import 'package:blackflag_github_flutter/common/local/local_storage.dart';
 import 'package:blackflag_github_flutter/common/net/code.dart';
 import 'package:blackflag_github_flutter/common/net/result_data.dart';
 import 'package:dio/dio.dart';
+import 'package:quiver/strings.dart';
 
 class HttpManager {
   static const String CONTENT_TYPE_JSON = "application/json";
@@ -22,9 +23,9 @@ class HttpManager {
       headers.addAll(header);
     }
 
-    if (optionParams["authorizationCode"] == null) {
+    if (isBlank(optionParams["authorizationCode"])) {
       var authorizationCode = await getAuthorization();
-      if (authorizationCode != null) {
+      if (isNotBlank(authorizationCode)) {
         optionParams["authorizationCode"] = authorizationCode;
       }
     }
@@ -52,7 +53,7 @@ class HttpManager {
         return ResultData(success: true, data: response.data, code: Code.SUCCESS);
       } else {
         var responseJson = response.data;
-        if (response.statusCode == 201 && responseJson.token != null) {
+        if (response.statusCode == 201 && isNotBlank(responseJson.token)) {
           optionParams["authorizationCode"] = "token ${responseJson.token}";
           await LocalStorage.saveString(Config.TOKEN_KEY, optionParams["authorizationCode"]);
         }
@@ -79,9 +80,9 @@ class HttpManager {
 
   static Future<String> getAuthorization() async {
     var token = await LocalStorage.get(Config.TOKEN_KEY);
-    if (token == null) {
+    if (isBlank(token)) {
       var basicCode = await LocalStorage.get(Config.USER_BASIC_CODE);
-      if (basicCode == null) {
+      if (isBlank(basicCode)) {
         //todo 提示输入账号密码
         return null;
       } else {
