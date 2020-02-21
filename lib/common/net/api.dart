@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:blackflag_github_flutter/common/config/config.dart';
 import 'package:blackflag_github_flutter/common/local/local_storage.dart';
 import 'package:blackflag_github_flutter/common/net/code.dart';
@@ -17,7 +15,7 @@ class HttpManager {
   };
 
   static Future<ResultData> netFetch(
-      String url, Map params, Map<String, String> header, bool text, Options option) async {
+      String url, Map<dynamic, dynamic> params, Map<String, String> header, Options option) async {
     Map<String, String> headers = {};
     if (header != null) {
       headers.addAll(header);
@@ -49,7 +47,7 @@ class HttpManager {
     }
 
     try {
-      if (option.contentType != null && option.contentType == ContentType.text) {
+      if (option.contentType != null && option.contentType == "text") {
         return ResultData(success: true, data: response.data, code: Code.SUCCESS);
       } else {
         var responseJson = response.data;

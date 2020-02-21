@@ -28,4 +28,6 @@ class BFConstant {}
 
 class BFStrings {
   static const String login_text = "登录";
+  static const String login_username_hint_text = "请输入github用户名";
+  static const String login_password_hint_text = "请输入密码";
 }

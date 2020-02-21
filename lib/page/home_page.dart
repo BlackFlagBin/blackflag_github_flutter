@@ -1,4 +1,4 @@
-import 'package:blackflag_github_flutter/common/style/bf_colors.dart';
+import 'package:blackflag_github_flutter/common/style/bf_style.dart';
 import 'package:blackflag_github_flutter/widget/bf_tab_bar_widget.dart';
 import 'package:flutter/material.dart';
 

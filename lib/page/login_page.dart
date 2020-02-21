@@ -1,9 +1,30 @@
-import 'package:blackflag_github_flutter/common/style/bf_colors.dart';
+import 'package:blackflag_github_flutter/common/config/config.dart';
+import 'package:blackflag_github_flutter/common/dao/user_dao.dart';
+import 'package:blackflag_github_flutter/common/local/local_storage.dart';
+import 'package:blackflag_github_flutter/common/style/bf_style.dart';
 import 'package:blackflag_github_flutter/widget/bf_flex_button.dart';
 import 'package:blackflag_github_flutter/widget/bf_input_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:quiver/strings.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String _username;
+  String _password;
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    initParams();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,20 +48,33 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 BFInputWidget(
-                  hintText: "输入账号",
+                  hintText: BFStrings.login_username_hint_text,
                   iconData: Icons.alarm,
+                  controller: _usernameController,
+                  onChanged: (value) {
+                    _username = value;
+                  },
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 BFInputWidget(
-                  hintText: "输入密码",
+                  hintText: BFStrings.login_password_hint_text,
                   iconData: Icons.alarm,
+                  controller: _passwordController,
+                  onChanged: (value) {
+                    _password = value;
+                  },
                 ),
                 Padding(padding: EdgeInsets.all(30)),
                 BFFlexButton(
                   textColor: Color(BFColors.textWhite),
                   text: BFStrings.login_text,
                   color: Color(BFColors.primaryValue),
-                  onPress: () {},
+                  onPress: () {
+                    if (isBlank(_username) || isBlank(_password)) {
+                      return;
+                    }
+                    UserDao.login(_username, _password, (success) {});
+                  },
                 )
               ],
             ),
@@ -48,5 +82,12 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void initParams() async {
+    _username = await LocalStorage.get(Config.USER_NAME_KEY);
+    _password = await LocalStorage.get(Config.PW_KEY);
+    _usernameController.text = _username;
+    _passwordController.text = _password;
   }
 }
