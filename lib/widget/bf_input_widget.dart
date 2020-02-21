@@ -16,12 +16,10 @@ class BFInputWidget extends StatefulWidget {
 }
 
 class _BFInputWidgetState extends State<BFInputWidget> {
-  TextEditingController _controller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: _controller,
+      controller: widget.controller,
       onChanged: widget.onChanged,
       style: widget.textStyle,
       decoration: InputDecoration(hintText: widget.hintText, icon: Icon(widget.iconData)),

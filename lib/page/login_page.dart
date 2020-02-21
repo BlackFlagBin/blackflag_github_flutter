@@ -5,6 +5,7 @@ import 'package:blackflag_github_flutter/common/style/bf_style.dart';
 import 'package:blackflag_github_flutter/widget/bf_flex_button.dart';
 import 'package:blackflag_github_flutter/widget/bf_input_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quiver/strings.dart';
 
 class LoginPage extends StatefulWidget {
@@ -52,7 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                   iconData: Icons.alarm,
                   controller: _usernameController,
                   onChanged: (value) {
-                    _username = value;
+                    setState(() {
+                      _username = value;
+                    });
                   },
                 ),
                 Padding(padding: EdgeInsets.all(10)),
@@ -61,7 +64,9 @@ class _LoginPageState extends State<LoginPage> {
                   iconData: Icons.alarm,
                   controller: _passwordController,
                   onChanged: (value) {
-                    _password = value;
+                    setState(() {
+                      _password = value;
+                    });
                   },
                 ),
                 Padding(padding: EdgeInsets.all(30)),
@@ -73,7 +78,11 @@ class _LoginPageState extends State<LoginPage> {
                     if (isBlank(_username) || isBlank(_password)) {
                       return;
                     }
-                    UserDao.login(_username, _password, (success) {});
+                    UserDao.login(_username, _password, (data) {
+                      if (data != null && data.success) {
+                        Fluttertoast.showToast(msg: BFStrings.login_success);
+                      }
+                    });
                   },
                 )
               ],

@@ -5,10 +5,11 @@ import 'package:blackflag_github_flutter/common/config/ignoreConfig.dart';
 import 'package:blackflag_github_flutter/common/local/local_storage.dart';
 import 'package:blackflag_github_flutter/common/net/address.dart';
 import 'package:blackflag_github_flutter/common/net/api.dart';
+import 'package:blackflag_github_flutter/common/net/result_data.dart';
 import 'package:dio/dio.dart';
 
 class UserDao {
-  static void login(String userName, String password, Function(bool) callBack) async {
+  static void login(String userName, String password, Function(ResultData) callBack) async {
     String type = "${userName}:${password}";
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
@@ -34,7 +35,7 @@ class UserDao {
     HttpManager.clearAuthorization();
 
     var res = await HttpManager.netFetch(
-        Address.getAuthorization(), requestParams, null, Options(method: "post"));
+        Address.getAuthorization(), json.encode(requestParams), null, Options(method: "post"));
     if (res != null && res.success) {
       await LocalStorage.saveString(Config.PW_KEY, password);
 
@@ -43,7 +44,7 @@ class UserDao {
       print(res.data.toString());
 
       if (callBack != null) {
-        callBack(res.success);
+        callBack(res);
       }
     }
   }

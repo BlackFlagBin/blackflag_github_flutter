@@ -15,7 +15,7 @@ class HttpManager {
   };
 
   static Future<ResultData> netFetch(
-      String url, Map<dynamic, dynamic> params, Map<String, String> header, Options option) async {
+      String url, String params, Map<String, String> header, Options option) async {
     Map<String, String> headers = {};
     if (header != null) {
       headers.addAll(header);
@@ -33,7 +33,30 @@ class HttpManager {
     option.headers = headers;
 
     var dio = Dio();
-    var response = await dio.get(url, queryParameters: params, options: option);
+    Response response;
+
+    try {
+      response = await dio.request(url, data: params, options: option);
+    } on DioError catch (e) {
+      Response errorResponse;
+      if (e.response != null) {
+        errorResponse = e.response;
+      } else {
+        errorResponse = Response(statusCode: 666);
+      }
+
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        errorResponse.statusCode = Code.NETWORK_TIMEOUT;
+      }
+      if (Config.DEBUG) {
+        print("请求异常: ${e.toString()}");
+      }
+
+      return ResultData(
+          success: false,
+          data: Code.errorHandleFunction(errorResponse.statusCode, e.message),
+          code: errorResponse.statusCode);
+    }
 
     if (Config.DEBUG) {
       print("请求url: ${url}");
@@ -72,7 +95,7 @@ class HttpManager {
 
     return ResultData(
         success: false,
-        data: Code.errorHandleFunction(response.statusCode),
+        data: Code.errorHandleFunction(response.statusCode, ""),
         code: response.statusCode);
   }
 
