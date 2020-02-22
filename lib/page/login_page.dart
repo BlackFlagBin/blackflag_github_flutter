@@ -63,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: BFStrings.login_password_hint_text,
                   iconData: Icons.alarm,
                   controller: _passwordController,
+                  obscureText: true,
                   onChanged: (value) {
                     setState(() {
                       _password = value;
