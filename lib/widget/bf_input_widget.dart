@@ -15,7 +15,7 @@ class BFInputWidget extends StatefulWidget {
       this.textStyle,
       this.controller,
       this.onChanged,
-      this.obscureText})
+      this.obscureText = false})
       : super(key: key);
 
   @override
