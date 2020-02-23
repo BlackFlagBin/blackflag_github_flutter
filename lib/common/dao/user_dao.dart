@@ -7,8 +7,10 @@ import 'package:blackflag_github_flutter/common/model/user.dart';
 import 'package:blackflag_github_flutter/common/net/address.dart';
 import 'package:blackflag_github_flutter/common/net/api.dart';
 import 'package:blackflag_github_flutter/common/net/result_data.dart';
+import 'package:blackflag_github_flutter/common/redux/user_redux.dart';
 import 'package:dio/dio.dart';
 import 'package:quiver/strings.dart';
+import 'package:redux/redux.dart';
 
 import 'dao_result.dart';
 
@@ -47,7 +49,7 @@ class UserDao {
       //todo 登录成功后
       if (Config.DEBUG) {
         print("user result ${resultData.result.toString()}");
-        print(resultData.data());
+        print(resultData.data);
         print(res.data.toString());
       }
 
@@ -57,11 +59,11 @@ class UserDao {
     }
   }
 
-  static Future<DataResult> initUserInfo() async {
+  static Future<DataResult> initUserInfo(Store store) async {
     var token = await LocalStorage.get(Config.TOKEN_KEY);
     var res = await getUserInfoLocal();
     if (res != null && res.result && isNotBlank(token)) {
-      //todo store
+      store.dispatch(UpdateUserAction(res.data));
     }
 
     return DataResult(res.data, (res.result && isNotBlank(token)));

@@ -163,6 +163,8 @@ class User {
     }
     return data;
   }
+
+  User.empty();
 }
 
 class Plan {
