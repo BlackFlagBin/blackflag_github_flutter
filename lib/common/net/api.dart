@@ -30,7 +30,12 @@ class HttpManager {
 
     headers["Authorization"] = optionParams["authorizationCode"];
 
-    option.headers = headers;
+    if (option != null) {
+      option.headers = headers;
+    } else {
+      option = Options(method: "get");
+      option.headers = headers;
+    }
 
     var dio = Dio();
     Response response;
@@ -74,8 +79,8 @@ class HttpManager {
         return ResultData(success: true, data: response.data, code: Code.SUCCESS);
       } else {
         var responseJson = response.data;
-        if (response.statusCode == 201 && isNotBlank(responseJson.token)) {
-          optionParams["authorizationCode"] = "token ${responseJson.token}";
+        if (response.statusCode == 201 && isNotBlank(responseJson["token"])) {
+          optionParams["authorizationCode"] = "token ${responseJson["token"]}";
           await LocalStorage.saveString(Config.TOKEN_KEY, optionParams["authorizationCode"]);
         }
 
