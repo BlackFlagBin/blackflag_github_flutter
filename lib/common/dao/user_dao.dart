@@ -70,8 +70,9 @@ class UserDao {
   static Future<DataResult> getUserInfoLocal() async {
     var userText = await LocalStorage.get(Config.USER_INFO);
     if (isNotBlank(userText)) {
-      var res = json.decode(userText);
-      return DataResult(res, true);
+      var userMap = json.decode(userText);
+      var user = User.fromJson(userMap);
+      return DataResult(user, true);
     } else {
       return DataResult(null, false);
     }
