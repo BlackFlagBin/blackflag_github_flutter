@@ -1,10 +1,36 @@
 import 'package:blackflag_github_flutter/common/model/user.dart';
 import 'package:blackflag_github_flutter/common/redux/bf_state.dart';
 import 'package:blackflag_github_flutter/common/redux/user_redux.dart';
+import 'package:blackflag_github_flutter/widget/bf_pull_load_widget.dart';
+import 'package:blackflag_github_flutter/widget/event_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-class DynamicPage extends StatelessWidget {
+class DynamicPage extends StatefulWidget {
+  @override
+  _DynamicPageState createState() => _DynamicPageState();
+}
+
+class _DynamicPageState extends State<DynamicPage> {
+  BFPullLoadWidgetControl _pullLoadWidgetControl = BFPullLoadWidgetControl();
+
+  Future<Null> _handleRefresh() async {
+    setState(() {
+      _pullLoadWidgetControl.count = 5;
+    });
+    return null;
+  }
+
+  bool _onNotification(Notification notification) {
+    if (notification is OverscrollNotification) {
+      setState(() {
+        _pullLoadWidgetControl.count += 5;
+      });
+    }
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<BFState>(builder: (context, store) {
@@ -14,9 +40,11 @@ class DynamicPage extends StatelessWidget {
         user.name = "new name";
         store.dispatch(UpdateUserAction(user));
       });
-      return Text(
-        store.state.userInfo.login,
-        style: Theme.of(context).textTheme.display1,
+      return BFPullLoadWidget(
+        onNotification: _onNotification,
+        control: _pullLoadWidgetControl,
+        itemBuilder: (context, index) => EventItem(),
+        onRefresh: _handleRefresh,
       );
     });
   }
