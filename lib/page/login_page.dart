@@ -2,13 +2,15 @@ import 'package:blackflag_github_flutter/common/config/config.dart';
 import 'package:blackflag_github_flutter/common/dao/user_dao.dart';
 import 'package:blackflag_github_flutter/common/local/local_storage.dart';
 import 'package:blackflag_github_flutter/common/style/bf_style.dart';
+import 'package:blackflag_github_flutter/common/utils/navigator_utils.dart';
 import 'package:blackflag_github_flutter/widget/bf_flex_button.dart';
 import 'package:blackflag_github_flutter/widget/bf_input_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quiver/strings.dart';
 
 class LoginPage extends StatefulWidget {
+  static String sName = "login_page";
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -81,7 +83,8 @@ class _LoginPageState extends State<LoginPage> {
                     }
                     UserDao.login(_username, _password, (data) {
                       if (data != null && data.success) {
-                        Fluttertoast.showToast(msg: BFStrings.login_success);
+                        NavigatorUtils.goHome(context);
+                        //Fluttertoast.showToast(msg: BFStrings.login_success);
                       }
                     });
                   },
@@ -97,7 +100,11 @@ class _LoginPageState extends State<LoginPage> {
   void initParams() async {
     _username = await LocalStorage.get(Config.USER_NAME_KEY);
     _password = await LocalStorage.get(Config.PW_KEY);
-    _usernameController.text = _username;
-    _passwordController.text = _password;
+    if (isNotBlank(_username)) {
+      _usernameController.text = _username;
+    }
+    if (isNotBlank(_password)) {
+      _passwordController.text = _password;
+    }
   }
 }

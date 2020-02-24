@@ -22,10 +22,9 @@ class FlutterReduxApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
-          "welcome_page": (context) => WelcomePage(),
-          "login_page": (context) => LoginPage(),
-          "home_page": (context) => HomePage(),
-          "/": (context) => WelcomePage(),
+          WelcomePage.sName: (context) => WelcomePage(),
+          LoginPage.sName: (context) => LoginPage(),
+          HomePage.sName: (context) => HomePage(),
         },
       ),
     );
