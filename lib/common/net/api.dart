@@ -55,6 +55,7 @@ class HttpManager {
       }
       if (Config.DEBUG) {
         print("请求异常: ${e.toString()}");
+        print("请求异常url: ${url}");
       }
 
       return ResultData(
@@ -71,6 +72,10 @@ class HttpManager {
 
       if (response != null) {
         print("返回结果: ${response.toString()}");
+      }
+
+      if (optionParams["authorizationCode"] != null) {
+        print("authorizationCode ${optionParams["authorizationCode"]}");
       }
     }
 

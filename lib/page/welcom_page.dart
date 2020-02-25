@@ -1,4 +1,3 @@
-import 'package:blackflag_github_flutter/common/dao/dao_result.dart';
 import 'package:blackflag_github_flutter/common/dao/user_dao.dart';
 import 'package:blackflag_github_flutter/common/redux/bf_state.dart';
 import 'package:blackflag_github_flutter/common/utils/navigator_utils.dart';
@@ -16,23 +15,19 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    toNext(DataResult res) {
+    Store<BFState> store = StoreProvider.of<BFState>(context);
+    Future.delayed(Duration(seconds: 2), () async {
+      //判断去登录还是主页
+      var res = await UserDao.initUserInfo(store);
       if (res != null && res.result) {
         NavigatorUtils.goHome(context);
       } else {
         NavigatorUtils.goLogin(context);
       }
-    }
+    });
 
     return StoreBuilder<BFState>(
       builder: (BuildContext context, Store store) {
-        Future.delayed(Duration(seconds: 2), () async {
-          //判断去登录还是主页
-          var res = await UserDao.initUserInfo(store);
-          print(res);
-          toNext(res);
-        });
-
         return Scaffold(
           body: Container(
             child: Center(
