@@ -10,7 +10,8 @@ import 'package:redux/redux.dart';
 void main() => runApp(FlutterReduxApp());
 
 class FlutterReduxApp extends StatelessWidget {
-  final Store _store = Store<BFState>(appReducer, initialState: BFState(userInfo: User.empty()));
+  final Store _store =
+      Store<BFState>(appReducer, initialState: BFState(userInfo: User.empty(), eventList: []));
 
   @override
   Widget build(BuildContext context) {
