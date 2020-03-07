@@ -10,6 +10,32 @@ class BFColors {
   static const int cardWhite = 0xFFFFFFFF;
   static const int textWhite = 0xFFFFFFFF;
 
+  static const miWhite = 0xffececec;
+  static const white = 0xFFFFFFFF;
+  static const transparentColor = 0x00000000;
+
+  static const mainBackgroundColor = miWhite;
+  static const tabBackgroundColor = 0xffffffff;
+  static const cardBackgroundColor = 0xFFFFFFFF;
+  static const cardShadowColor = 0xff000000;
+  static const actionBlue = 0xff267aff;
+
+  static const lineColor = 0xff42464b;
+
+  static const webDraculaBackgroundColor = 0xff282a36;
+
+  static const selectedColor = primaryDarkValue;
+
+  static const titleTextColor = miWhite;
+  static const mainTextColor = primaryDarkValue;
+  static const subTextColor = 0xff959595;
+  static const subLightTextColor = 0xffc4c4c4;
+  static const TextColorWhite = 0xFFFFFFFF;
+  static const TextColorMiWhtte = miWhite;
+
+  static const tabSelectedColor = primaryValue;
+  static const tabUnSelectColor = 0xffa6aaaf;
+
   static const MaterialColor primarySwatch = const MaterialColor(primaryValue, const <int, Color>{
     50: const Color(primaryLightValue),
     100: const Color(primaryLightValue),
@@ -24,7 +50,114 @@ class BFColors {
   });
 }
 
-class BFConstant {}
+class BFConstant {
+  // navbar 高度
+  static const iosnavHeaderHeight = 70.0;
+  static const andrnavHeaderHeight = 70.0;
+
+  static const largetTextSize = 30.0;
+  static const bigTextSize = 23.0;
+  static const normalTextSize = 18.0;
+  static const middleTextWhiteSize = 16.0;
+  static const smallTextSize = 14.0;
+  static const minTextSize = 12.0;
+
+  // tabBar 高度
+  static const tabBarHeight = 44.0;
+  static const tabIconSize = 20.0;
+
+  static const normalIconSize = 40.0;
+  static const bigIconSize = 50.0;
+  static const largeIconSize = 80.0;
+  static const smallIconSize = 30.0;
+  static const minIconSize = 20.0;
+  static const littleIconSize = 10.0;
+
+  static const normalMarginEdge = 10.0;
+  static const normalNumberOfLine = 4.0;
+
+  static const titleTextStyle = TextStyle(
+    color: Color(BFColors.titleTextColor),
+    fontSize: normalTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const smallTextWhite = TextStyle(
+    color: Color(BFColors.TextColorWhite),
+    fontSize: smallTextSize,
+  );
+
+  static const smallText = TextStyle(
+    color: Color(BFColors.mainTextColor),
+    fontSize: smallTextSize,
+  );
+
+  static const smallTextBold = TextStyle(
+    color: Color(BFColors.mainTextColor),
+    fontSize: smallTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const subLightSmallText = TextStyle(
+    color: Color(BFColors.subLightTextColor),
+    fontSize: smallTextSize,
+  );
+
+  static const miLightSmallText = TextStyle(
+    color: Color(BFColors.miWhite),
+    fontSize: smallTextSize,
+  );
+
+  static const subSmallText = TextStyle(
+    color: Color(BFColors.subTextColor),
+    fontSize: smallTextSize,
+  );
+
+  static const middleText = TextStyle(
+    color: Color(BFColors.mainTextColor),
+    fontSize: middleTextWhiteSize,
+  );
+
+  static const normalText = TextStyle(
+    color: Color(BFColors.mainTextColor),
+    fontSize: normalTextSize,
+  );
+
+  static const subNormalText = TextStyle(
+    color: Color(BFColors.subTextColor),
+    fontSize: normalTextSize,
+  );
+
+  static const normalTextWhite = TextStyle(
+    color: Color(BFColors.TextColorWhite),
+    fontSize: normalTextSize,
+  );
+
+  static const normalTextMitWhite = TextStyle(
+    color: Color(BFColors.miWhite),
+    fontSize: normalTextSize,
+  );
+
+  static const normalTextLight = TextStyle(
+    color: Color(BFColors.primaryLightValue),
+    fontSize: normalTextSize,
+  );
+
+  static const middleTextWhite = TextStyle(
+    color: Color(BFColors.TextColorWhite),
+    fontSize: middleTextWhiteSize,
+  );
+
+  static const largeText = TextStyle(
+    color: Color(BFColors.mainTextColor),
+    fontSize: bigTextSize,
+  );
+
+  static const largeTextWhite = TextStyle(
+    color: Color(BFColors.TextColorWhite),
+    fontSize: bigTextSize,
+  );
+}
 
 class BFStrings {
   static const String app_name = "BFGithubAppFlutter";
