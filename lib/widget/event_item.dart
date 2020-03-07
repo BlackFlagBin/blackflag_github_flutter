@@ -1,5 +1,6 @@
 import 'package:blackflag_github_flutter/common/model/event.dart';
 import 'package:blackflag_github_flutter/common/style/bf_style.dart';
+import 'package:blackflag_github_flutter/widget/bf_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:quiver/strings.dart';
 
@@ -22,11 +23,7 @@ class EventItem extends StatelessWidget {
           );
 
     return Container(
-      child: Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
-        color: Color(BFColors.cardWhite),
-        margin: EdgeInsets.all(10),
+      child: BFCardItem(
         child: FlatButton(
             onPressed: () {},
             child: Padding(
