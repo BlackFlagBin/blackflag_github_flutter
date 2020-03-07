@@ -1,3 +1,4 @@
+import 'package:blackflag_github_flutter/common/utils/common_utils.dart';
 import 'package:blackflag_github_flutter/common/utils/event_utils.dart';
 
 class Event {
@@ -30,6 +31,7 @@ class Event {
     actionUserPic = json["actor"]["avatar_url"];
     var other = EventUtils.getActionAndDes(json);
     actionDes = other["des"];
+    actionTime = CommonUtils.getNewsTimeStr(DateTime.parse(json["created_at"]));
     actionTarget = other["actionStr"];
   }
 

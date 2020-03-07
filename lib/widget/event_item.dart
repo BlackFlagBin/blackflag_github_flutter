@@ -49,7 +49,7 @@ class EventItem extends StatelessWidget {
                         style: BFConstant.smallTextBold,
                       )),
                       Text(
-                        "hello world",
+                        event.actionTime,
                         style: BFConstant.subSmallText,
                       ),
                     ],
