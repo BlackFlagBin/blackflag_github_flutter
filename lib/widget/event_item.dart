@@ -1,6 +1,7 @@
 import 'package:blackflag_github_flutter/common/model/event.dart';
 import 'package:blackflag_github_flutter/common/style/bf_style.dart';
 import 'package:flutter/material.dart';
+import 'package:quiver/strings.dart';
 
 class EventItem extends StatelessWidget {
   final Event event;
@@ -9,6 +10,18 @@ class EventItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget descriptionWidget = (isEmpty(event.actionDes))
+        ? Container()
+        : Container(
+            child: Text(
+              "hello world",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: 16, height: 1.3, color: Colors.lightBlue),
+            ),
+            margin: EdgeInsets.only(top: 6, bottom: 2),
+            alignment: Alignment.topLeft,
+          );
+
     return Container(
       child: Card(
         elevation: 5,
@@ -50,18 +63,7 @@ class EventItem extends StatelessWidget {
                     margin: EdgeInsets.only(top: 6, bottom: 2),
                     alignment: Alignment.topLeft,
                   ),
-                  Container(
-                    child: Text(
-                      "hello world",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          height: 1.3,
-                          color: Colors.lightBlue),
-                    ),
-                    margin: EdgeInsets.only(top: 6, bottom: 2),
-                    alignment: Alignment.topLeft,
-                  ),
+                  descriptionWidget,
                 ],
               ),
             )),
