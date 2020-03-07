@@ -1,7 +1,12 @@
+import 'package:blackflag_github_flutter/common/model/event.dart';
 import 'package:blackflag_github_flutter/common/style/bf_style.dart';
 import 'package:flutter/material.dart';
 
 class EventItem extends StatelessWidget {
+  final Event event;
+
+  const EventItem({Key key, this.event}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,19 +24,23 @@ class EventItem extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Image.asset(
-                        "static/images/logo.png",
-                        width: 30,
-                        height: 30,
+                      ClipOval(
+                        child: FadeInImage.assetNetwork(
+                          image: event.actionUserPic,
+                          width: 30,
+                          fit: BoxFit.fitWidth,
+                          height: 30,
+                          placeholder: "static/images/logo.png",
+                        ),
                       ),
                       Padding(padding: EdgeInsets.all(10)),
-                      Expanded(child: Text("hello world")),
+                      Expanded(child: Text(event.actionUser)),
                       Text("hello world"),
                     ],
                   ),
                   Container(
                     child: Text(
-                      "hello world",
+                      event.actionTarget,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,

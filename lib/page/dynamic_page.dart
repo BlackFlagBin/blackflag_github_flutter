@@ -40,7 +40,8 @@ class _DynamicPageState extends State<DynamicPage> {
     });
   }
 
-  Widget buildEventItem(BuildContext context, int index) => EventItem();
+  Widget buildEventItem(BuildContext context, int index) =>
+      EventItem(event: _pullLoadWidgetControl.dataList[index]);
 
   Future<Null> _handleRefresh() async {
     if (_isLoading) {
