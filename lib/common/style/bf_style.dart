@@ -123,6 +123,12 @@ class BFConstant {
     fontSize: normalTextSize,
   );
 
+  static const normalTextBold = TextStyle(
+    color: Color(BFColors.mainTextColor),
+    fontSize: normalTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
   static const subNormalText = TextStyle(
     color: Color(BFColors.subTextColor),
     fontSize: normalTextSize,
@@ -184,4 +190,6 @@ class BFIcons {
   static const IconData MAIN_QS = IconData(0xe818, fontFamily: BFIcons.FONT_FAMILY);
 
   static const IconData MAIN_MY = IconData(0xe6d0, fontFamily: BFIcons.FONT_FAMILY);
+
+  static const IconData REPOS_ITEM_USER = IconData(0xe63e, fontFamily: BFIcons.FONT_FAMILY);
 }

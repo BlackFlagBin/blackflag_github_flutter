@@ -25,7 +25,7 @@ class _BFPullLoadWidgetState extends State<BFPullLoadWidget> {
 
     return NotificationListener<OverscrollNotification>(
         onNotification: (notification) {
-          if (widget.control.needLoadMore = true && widget.onLoadMore != null) {
+          if (widget.control.needLoadMore && widget.onLoadMore != null) {
             widget.onLoadMore();
           }
           return true;

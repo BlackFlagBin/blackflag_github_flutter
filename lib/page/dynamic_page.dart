@@ -24,7 +24,9 @@ class _DynamicPageState extends State<DynamicPage> {
   void didChangeDependencies() {
     Store<BFState> store = StoreProvider.of<BFState>(context);
     _pullLoadWidgetControl.dataList = store.state.eventList;
-    _handleRefresh();
+    if (_pullLoadWidgetControl.dataList.length == 0) {
+      _handleRefresh();
+    }
     super.didChangeDependencies();
   }
 

@@ -1,40 +1,16 @@
-import 'package:blackflag_github_flutter/common/config/config.dart';
+import 'dart:io';
+
+import 'package:blackflag_github_flutter/common/net/api.dart';
 import 'package:blackflag_github_flutter/common/net/code.dart';
 import 'package:blackflag_github_flutter/common/net/result_data.dart';
 import 'package:dio/dio.dart';
 
 class GitHubTrending {
   Future<ResultData> fetchTrending(String url) async {
-    var dio = Dio();
-    Response res;
+    ResultData res =
+        await HttpManager.netFetch(url, null, null, Options(contentType: ContentType.text.value));
 
-    try {
-      res = await dio.request(url,
-          data: null, options: Options(contentType: "application/x-www-form-urlencoded"));
-    } on DioError catch (e) {
-      Response errorResponse;
-      if (e.response != null) {
-        errorResponse = e.response;
-      } else {
-        errorResponse = Response(statusCode: 666);
-      }
-
-      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
-        errorResponse.statusCode = Code.NETWORK_TIMEOUT;
-      }
-
-      if (Config.DEBUG) {
-        print("请求异常: ${e.toString()}");
-        print("请求异常url: ${url}");
-      }
-
-      return ResultData(
-          data: Code.errorHandleFunction(errorResponse.statusCode, e.message),
-          success: false,
-          code: errorResponse.statusCode);
-    }
-
-    if (res != null && res.statusCode == 200) {
+    if (res != null && res.success && res.data != null) {
       return ResultData(data: TrendingUtil.htmlToRepo(res.data), success: true, code: Code.SUCCESS);
     } else {
       return ResultData();

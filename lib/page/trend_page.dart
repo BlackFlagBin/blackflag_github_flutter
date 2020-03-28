@@ -1,4 +1,5 @@
 import 'package:blackflag_github_flutter/common/dao/repos_dao.dart';
+import 'package:blackflag_github_flutter/widget/repos_item.dart';
 import 'package:flutter/material.dart';
 
 class TrendPage extends StatefulWidget {
@@ -15,9 +16,6 @@ class _TrendPageState extends State<TrendPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "5555555",
-      style: Theme.of(context).textTheme.display1,
-    );
+    return ReposItem();
   }
 }
