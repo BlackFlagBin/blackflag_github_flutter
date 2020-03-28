@@ -8,7 +8,7 @@ class TrendPage extends StatefulWidget {
   _TrendPageState createState() => _TrendPageState();
 }
 
-class _TrendPageState extends State<TrendPage> {
+class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixin {
   bool _isLoading = false;
   int _page = 1;
   BFPullLoadWidgetControl _pullLoadWidgetControl = BFPullLoadWidgetControl();
@@ -16,8 +16,9 @@ class _TrendPageState extends State<TrendPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_pullLoadWidgetControl.dataList.length == 0) {}
-    ReposDao.getTrendDao();
+    if (_pullLoadWidgetControl.dataList.length == 0) {
+      ReposDao.getTrendDao();
+    }
   }
 
   @override
@@ -63,4 +64,7 @@ class _TrendPageState extends State<TrendPage> {
       reposViewModel: item,
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
