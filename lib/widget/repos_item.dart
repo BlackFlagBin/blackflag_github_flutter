@@ -25,7 +25,7 @@ class ReposItem extends StatelessWidget {
                         ClipOval(
                           child: FadeInImage.assetNetwork(
                             placeholder: "static/images/logo.png",
-                            image: "FFFF",
+                            image: reposViewModel.ownerPic,
                             fit: BoxFit.fitWidth,
                             width: 40,
                             height: 40,
@@ -37,7 +37,7 @@ class ReposItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "FFFF",
+                              reposViewModel.repositoryName,
                               style: BFConstant.normalTextBold,
                             ),
                             BFIconText(
@@ -46,7 +46,7 @@ class ReposItem extends StatelessWidget {
                               iconColor: Color(BFColors.subLightTextColor),
                               padding: 3,
                               iconSize: 10,
-                              iconText: "FFF",
+                              iconText: reposViewModel.ownerName,
                             )
                           ],
                         )),
@@ -58,12 +58,55 @@ class ReposItem extends StatelessWidget {
                     ),
                     Container(
                       child: Text(
-                        "gggggggggggggggggggggggggggggg",
+                        reposViewModel.repositoryType,
                         style: BFConstant.subSmallText,
                       ),
                       margin: EdgeInsets.only(top: 6, bottom: 2),
                       alignment: Alignment.topLeft,
-                    )
+                    ),
+                    new Padding(padding: EdgeInsets.all(10.0)),
+                    new Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Expanded(
+                          child: new Center(
+                            child: new BFIconText(
+                              iconData: BFIcons.REPOS_ITEM_STAR,
+                              iconText: reposViewModel.repositoryStar,
+                              textStyle: BFConstant.subSmallText,
+                              iconColor: Color(BFColors.subTextColor),
+                              iconSize: 15.0,
+                              padding: 5.0,
+                            ),
+                          ),
+                        ),
+                        new Expanded(
+                          child: new Center(
+                            child: new BFIconText(
+                              iconData: BFIcons.REPOS_ITEM_FORK,
+                              iconText: reposViewModel.repositoryFork,
+                              textStyle: BFConstant.subSmallText,
+                              iconColor: Color(BFColors.subTextColor),
+                              iconSize: 15.0,
+                              padding: 5.0,
+                            ),
+                          ),
+                        ),
+                        new Expanded(
+                          flex: 2,
+                          child: new Center(
+                            child: new BFIconText(
+                              iconData: BFIcons.REPOS_ITEM_ISSUE,
+                              iconText: reposViewModel.repositoryWatch,
+                              textStyle: BFConstant.subSmallText,
+                              iconColor: Color(BFColors.subTextColor),
+                              iconSize: 15.0,
+                              padding: 5.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ))),
@@ -79,6 +122,6 @@ class ReposViewModel {
   String repositoryFork;
   String repositoryWatch;
   String hideWatchIcon;
-  String repositoryTyp;
+  String repositoryType;
   String repositoryDes;
 }

@@ -192,4 +192,7 @@ class BFIcons {
   static const IconData MAIN_MY = IconData(0xe6d0, fontFamily: BFIcons.FONT_FAMILY);
 
   static const IconData REPOS_ITEM_USER = IconData(0xe63e, fontFamily: BFIcons.FONT_FAMILY);
+  static IconData REPOS_ITEM_STAR = new IconData(0xe643, fontFamily: BFIcons.FONT_FAMILY);
+  static IconData REPOS_ITEM_FORK = new IconData(0xe67e, fontFamily: BFIcons.FONT_FAMILY);
+  static IconData REPOS_ITEM_ISSUE = new IconData(0xe661, fontFamily: BFIcons.FONT_FAMILY);
 }

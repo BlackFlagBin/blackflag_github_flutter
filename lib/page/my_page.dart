@@ -9,7 +9,7 @@ class MyPage extends StatelessWidget {
         converter: (store) => store.state.userInfo.name,
         builder: (context, name) {
           return Text(
-            name,
+            name ?? "",
             style: Theme.of(context).textTheme.display1,
           );
         });

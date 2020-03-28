@@ -1,4 +1,3 @@
-import 'package:blackflag_github_flutter/common/model/event.dart';
 import 'package:blackflag_github_flutter/common/style/bf_style.dart';
 import 'package:flutter/material.dart';
 
@@ -57,6 +56,6 @@ class _BFPullLoadWidgetState extends State<BFPullLoadWidget> {
 }
 
 class BFPullLoadWidgetControl {
-  List<Event> dataList = [];
+  List dataList = [];
   bool needLoadMore = true;
 }
