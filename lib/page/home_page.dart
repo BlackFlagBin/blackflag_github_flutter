@@ -23,15 +23,21 @@ class _HomePageState extends State<HomePage> {
       tabItems: <Widget>[
         Tab(
           icon: Icon(
-            Icons.directions_car,
+            BFIcons.MAIN_DT,
             color: BFColors.primarySwatch,
           ),
         ),
         Tab(
-          icon: Icon(Icons.directions_transit, color: BFColors.primarySwatch),
+          icon: Icon(
+            BFIcons.MAIN_QS,
+            color: BFColors.primarySwatch,
+          ),
         ),
         Tab(
-          icon: Icon(Icons.directions_bike, color: BFColors.primarySwatch),
+          icon: Icon(
+            BFIcons.MAIN_MY,
+            color: BFColors.primarySwatch,
+          ),
         ),
       ],
       tabViews: <Widget>[

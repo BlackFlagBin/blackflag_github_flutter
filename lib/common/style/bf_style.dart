@@ -175,3 +175,13 @@ class BFStrings {
 
   static const String load_more_not = "没有更多数据";
 }
+
+class BFIcons {
+  static const String FONT_FAMILY = "wxcIconFont";
+
+  static const IconData MAIN_DT = IconData(0xe684, fontFamily: BFIcons.FONT_FAMILY);
+
+  static const IconData MAIN_QS = IconData(0xe818, fontFamily: BFIcons.FONT_FAMILY);
+
+  static const IconData MAIN_MY = IconData(0xe6d0, fontFamily: BFIcons.FONT_FAMILY);
+}

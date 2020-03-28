@@ -77,3 +77,8 @@ flutter:
 
   assets:
     - static/images/
+    -
+  fonts:
+    - family: wxcIconFont
+      fonts:
+        - asset: static/font/iconfont.ttf
