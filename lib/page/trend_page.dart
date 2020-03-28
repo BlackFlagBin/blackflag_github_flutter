@@ -17,7 +17,7 @@ class _TrendPageState extends State<TrendPage> with AutomaticKeepAliveClientMixi
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_pullLoadWidgetControl.dataList.length == 0) {
-      ReposDao.getTrendDao();
+      _handleRefresh();
     }
   }
 
