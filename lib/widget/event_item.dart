@@ -32,6 +32,7 @@ class EventItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       ClipOval(
                         child: FadeInImage.assetNetwork(
@@ -42,7 +43,7 @@ class EventItem extends StatelessWidget {
                           placeholder: "static/images/logo.png",
                         ),
                       ),
-                      Padding(padding: EdgeInsets.all(10)),
+                      Padding(padding: EdgeInsets.all(5)),
                       Expanded(
                           child: Text(
                         event.actionUser,

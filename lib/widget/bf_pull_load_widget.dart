@@ -39,9 +39,18 @@ class _BFPullLoadWidgetState extends State<BFPullLoadWidget> {
                   return widget.itemBuilder(context, index);
                 }
               },
-              itemCount: (listSize > 0) ? (listSize + 1) : listSize,
+              itemCount: _getListCount(),
             ),
             onRefresh: widget.onRefresh));
+  }
+
+  int _getListCount() {
+    var listSize = widget.control.dataList.length;
+    if (widget.control.needHeader) {
+      return listSize > 0 ? listSize + 2 : listSize + 1;
+    } else {
+      return listSize > 0 ? listSize + 1 : listSize;
+    }
   }
 
   Widget _buildProgressIndicator() {
@@ -58,4 +67,5 @@ class _BFPullLoadWidgetState extends State<BFPullLoadWidget> {
 class BFPullLoadWidgetControl {
   List dataList = [];
   bool needLoadMore = true;
+  bool needHeader = false;
 }

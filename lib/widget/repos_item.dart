@@ -64,13 +64,13 @@ class ReposItem extends StatelessWidget {
                       margin: EdgeInsets.only(top: 6, bottom: 2),
                       alignment: Alignment.topLeft,
                     ),
-                    new Padding(padding: EdgeInsets.all(10.0)),
-                    new Row(
+                    Padding(padding: EdgeInsets.all(10.0)),
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Expanded(
-                          child: new Center(
-                            child: new BFIconText(
+                        Expanded(
+                          child: Center(
+                            child: BFIconText(
                               iconData: BFIcons.REPOS_ITEM_STAR,
                               iconText: reposViewModel.repositoryStar,
                               textStyle: BFConstant.subSmallText,
@@ -80,9 +80,9 @@ class ReposItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        new Expanded(
-                          child: new Center(
-                            child: new BFIconText(
+                        Expanded(
+                          child: Center(
+                            child: BFIconText(
                               iconData: BFIcons.REPOS_ITEM_FORK,
                               iconText: reposViewModel.repositoryFork,
                               textStyle: BFConstant.subSmallText,
@@ -92,10 +92,10 @@ class ReposItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        new Expanded(
+                        Expanded(
                           flex: 2,
-                          child: new Center(
-                            child: new BFIconText(
+                          child: Center(
+                            child: BFIconText(
                               iconData: BFIcons.REPOS_ITEM_ISSUE,
                               iconText: reposViewModel.repositoryWatch,
                               textStyle: BFConstant.subSmallText,

@@ -163,10 +163,18 @@ class BFConstant {
     color: Color(BFColors.TextColorWhite),
     fontSize: bigTextSize,
   );
+
+  static const largeTextWhiteBold = TextStyle(
+    color: Color(BFColors.TextColorWhite),
+    fontSize: bigTextSize,
+    fontWeight: FontWeight.bold,
+  );
 }
 
 class BFStrings {
   static const String app_name = "BFGithubAppFlutter";
+
+  static const String nothing_now = "目前什么都没有。";
 
   static const String login_text = "登录";
   static const String login_username_hint_text = "请输入github用户名";
@@ -195,4 +203,8 @@ class BFIcons {
   static IconData REPOS_ITEM_STAR = new IconData(0xe643, fontFamily: BFIcons.FONT_FAMILY);
   static IconData REPOS_ITEM_FORK = new IconData(0xe67e, fontFamily: BFIcons.FONT_FAMILY);
   static IconData REPOS_ITEM_ISSUE = new IconData(0xe661, fontFamily: BFIcons.FONT_FAMILY);
+
+  static IconData USER_ITEM_COMPANY = new IconData(0xe63e, fontFamily: BFIcons.FONT_FAMILY);
+  static IconData USER_ITEM_LOCATION = new IconData(0xe7e6, fontFamily: BFIcons.FONT_FAMILY);
+  static IconData USER_ITEM_LINK = new IconData(0xe670, fontFamily: BFIcons.FONT_FAMILY);
 }
